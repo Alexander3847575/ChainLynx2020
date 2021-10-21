@@ -2,19 +2,14 @@ package frc.robot;
 //this is a test
 
 <<<<<<< Updated upstream
-// import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-// import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.*;
-// import edu.wpi.first.wpilibj.interfaces.Gyro;
 =======
 import java.sql.Time;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -22,16 +17,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.LambdaJoystick.ThrottlePosition;
-// import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-// import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-// import edu.wpi.first.wpilibj.SendableBase;
-// import edu.wpi.first.wpilibj.shuffleboard.*;
-// import edu.wpi.first.wpilibj.GyroBase;
-// import edu.wpi.first.wpilibj.AnalogGyro;
-// import java.util.Map;
-// import java.util.Timer;
-
-//import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets.kGyro;
 
 public class DriveTrain {
 <<<<<<< Updated upstream
@@ -136,6 +121,22 @@ public class DriveTrain {
         rightMotor2.set(ControlMode.Follower, rightMotor2.getDeviceID());
         rightMotor2.setInverted(InvertType.FollowMaster);
     }
+    
+    public void updateSmartDashboard () {
+        SmartDashboard.putBoolean("Alarms/RvsOverSpeed", revrSpeedWarn);
+        SmartDashboard.putBoolean("Alarms/masteralarm", masteralarm);
+        SmartDashboard.putNumber("status/throttlePrime", (throttle3));
+        SmartDashboard.putBoolean("Alarms/RvsThrottleWarn", (RvsThrottleWarn));
+        SmartDashboard.putNumber("status/thrust", ((thrust1)));
+        SmartDashboard.putNumber("raw data/Xraw", throttlePosition.x);
+        SmartDashboard.putNumber("raw data/Yraw", throttlePosition.y);
+        SmartDashboard.putNumber("raw data/Zraw", throttlePosition.z);
+        SmartDashboard.putBoolean("Alarms/VNE", velocityNeverToExcede);
+        SmartDashboard.putBoolean("Alarms/V1", velocityToTurn);
+        SmartDashboard.putBoolean("status/RobotArmed", masterSafteyOff);
+        // SmartDashboard.putBoolean("BrakesIndicator",Brakes);
+        // SmartDashboard.putNumber
+    }
 
     public void updateSpeed(final ThrottlePosition throttlePosition) {
         double scaledX = throttlePosition.x;
@@ -180,20 +181,9 @@ public class DriveTrain {
                 : (false);
         revrSpeedWarn = ((throttle3 >= 55.00) && (throttleForward == false) ? (revrSpeedWarn = true)
                 : (revrSpeedWarn = false));
-        SmartDashboard.putBoolean("Alarms/RvsOverSpeed", revrSpeedWarn);
-        SmartDashboard.putBoolean("Alarms/masteralarm", masteralarm);
-        SmartDashboard.putNumber("status/throttlePrime", (throttle3));
-        SmartDashboard.putBoolean("Alarms/RvsThrottleWarn", (RvsThrottleWarn));
-        SmartDashboard.putNumber("status/thrust", ((thrust1)));
-        SmartDashboard.putNumber("raw data/Xraw", throttlePosition.x);
-        SmartDashboard.putNumber("raw data/Yraw", throttlePosition.y);
-        SmartDashboard.putNumber("raw data/Zraw", throttlePosition.z);
-<<<<<<< Updated upstream
-        SmartDashboard.putBoolean("Alarms/VNE", velocityNeverToExcede);
-        SmartDashboard.putBoolean("Alarms/V1", velocityToTurn);
-        SmartDashboard.putBoolean("status/RobotArmed", masterSafteyOff);
-        // SmartDashboard.putBoolean("BrakesIndicator",Brakes);
-        // SmartDashboard.putNumber
+        
+        updateSmartDashboard();
+        
         // VelocityCheck = (Brakes == true)?(speedbrake):throttle2;
         // (throttleMode ? (throttle2) : 0.40 );
         scaledX = (scaledX * 0.5 * (throttleMode ? (throttle2) : 0.70));
