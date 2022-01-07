@@ -1,7 +1,6 @@
 package frc.robot;
 //this is a test
 
-<<<<<<< Updated upstream
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -12,31 +11,22 @@ import java.sql.Time;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Timer;
->>>>>>> Stashed changes
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.LambdaJoystick.ThrottlePosition;
 
 public class DriveTrain {
-<<<<<<< Updated upstream
 
-=======
     //private final VictorSPX spitterWheel;
->>>>>>> Stashed changes
     private final VictorSPX leftMotor1;
     private final VictorSPX rightMotor1;
     private final VictorSPX leftMotor2;
     private final VictorSPX rightMotor2;
     private final Encoder enco;
-    // public ADIS16448_IMU gyro;
-<<<<<<< Updated upstream
-=======
-
    
     public double throttleInput;
     public double VelocityCheck;
     public double speedbrake;
->>>>>>> Stashed changes
 
     private boolean throttleMode = true;// formally slowSpeed, side not we're calling the default spped baby mode,
                                         // outreach mode, or rookie mode
@@ -187,13 +177,9 @@ public class DriveTrain {
         // (throttleMode ? (throttle2) : 0.40 );
         scaledX = (scaledX * 0.5 * (throttleMode ? (throttle2) : 0.70));
         scaledY = scaledY * throttleDirectionConstant * (throttleMode ? (throttle2) : 0.70);
-=======
-       
 
         scaledX = (scaledX * 0.5 * ( (throttle2)));
         scaledY = scaledY * throttleDirectionConstant *(throttle2);
->>>>>>> Stashed changes
-
         // if (throttleMode == false) {
         // scaledX = scaledX * (drivingOffSpeed ? 0.27 : (throttle1+1.00));//note to
         // self: default is .5 , .75 I assumed the they were proportinal so sclaed it by
@@ -201,14 +187,11 @@ public class DriveTrain {
         // scaledY = scaledY * (drivingOffSpeed ? 0.40 : (throttle1+1.00));
         // }
 
-<<<<<<< Updated upstream
         final double right = ((-scaledX - scaledY) * -1);// +throttlePosition.z; //why plus throttle z?
         final double left = (scaledY - scaledX) * -1;
-=======
-       final double right = ((-scaledX - scaledY) * -1 - (auto ==false ? (0.0) : 0.05));
-       // +throttlePosition.z; //why plus throttle z?//dunno, just leave it for now
-       final double left = (scaledY - scaledX)* -1 + (auto ==false ? (0.0) : 0.05);
->>>>>>> Stashed changes
+        final double right = ((-scaledX - scaledY) * -1 - (auto ==false ? (0.0) : 0.05));
+        // +throttlePosition.z; //why plus throttle z?//dunno, just leave it for now
+        final double left = (scaledY - scaledX)* -1 + (auto ==false ? (0.0) : 0.05);
 
         leftMotor1.set(ControlMode.PercentOutput, left);
         leftMotor2.follow(leftMotor1);
@@ -216,7 +199,6 @@ public class DriveTrain {
         rightMotor2.follow(rightMotor1);
     }
 
-<<<<<<< Updated upstream
     // it is now safe to touch stuff
 
     public void autoUpdateSpeed(double left, double right) {
@@ -243,7 +225,7 @@ public class DriveTrain {
         System.out.println(encoderPositionLeft);
         int encoderPositionRight = rightMotor1.getSelectedSensorPosition();
         System.out.println(encoderPositionRight);
-=======
+
     public void autoUpdateSpeed() {
         //if (int i = n; i < 10; i++){
         leftMotor1.set(ControlMode.PercentOutput, 0.2);
@@ -300,7 +282,6 @@ public class DriveTrain {
 
     public void startAuto() {
         autoUpdateSpeed(); 
->>>>>>> Stashed changes
     }
 
     public void togglethrottleMode() {
@@ -377,10 +358,6 @@ public class DriveTrain {
 
     public void endRush() {
         rushing = false;
-    }
-
-    {
-        leftControlCount++;
     }
 
 }
